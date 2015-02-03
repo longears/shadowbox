@@ -1,5 +1,3 @@
 {
-  "key": "YOUR_APP_KEY",
-  "secret": "YOUR_APP_SECRET",
   "token": "YOUR_GENERATED_ACCESS_TOKEN"
 }

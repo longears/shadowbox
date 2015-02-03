@@ -27,14 +27,13 @@ var configPath = untildify('~/.shadowbox');
 if (!fs.existsSync(configPath)) {
     console.log([
         'Setup instructions:',
-        '1. Create an app for yourself on the Dropbox App Console.',
+        '1. Create a Dropbox API app for yourself on the Dropbox App Console.',
+        '   Give it full access to your whole Dropbox.',
         '   You can name it whatever you want; it will only be used by you.',
         '       https://www.dropbox.com/developers/apps',
         '2. On your app settings page, get a "Generated access token" for your account.',
         '3. Create a file at ~/.shadowbox which contains:',
         '   {',
-        '     "key": "YOUR_APP_KEY",',
-        '     "secret": "YOUR_APP_SECRET",',
         '     "token": "YOUR_GENERATED_ACCESS_TOKEN"',
         '   }',
     ].join('\n'));
