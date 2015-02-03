@@ -1,0 +1,31 @@
+{
+  "name": "shadowbox",
+  "version": "0.0.1",
+  "description": "Show files you've hidden using Dropbox Selective Sync.",
+  "main": "index.js",
+  "bin": "bin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "longears <longears.npm@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/longears/shadowbox"
+  },
+  "keywords": [
+      "dropbox",
+      "selectivesync",
+      "selective sync",
+      "selective",
+      "cli"
+  ],
+  "license": "MIT",
+  "preferGlobal": true,
+  "dependencies": {
+    "bluebird": "^2.9.6",
+    "chalk": "^0.5.1",
+    "dropbox": "^0.10.3",
+    "nomnom": "^1.8.1",
+    "untildify": "^1.0.0"
+  }
+}
