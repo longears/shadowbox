@@ -12,6 +12,9 @@
     "type": "git",
     "url": "https://github.com/longears/shadowbox"
   },
+  "bugs": {
+    "url": "https://github.com/longears/shadowbox/issues"
+  },
   "keywords": [
       "dropbox",
       "selectivesync",
