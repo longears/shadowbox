@@ -1,7 +1,7 @@
 {
   "name": "shadowbox",
   "version": "0.0.1",
-  "description": "Show files you've hidden using Dropbox Selective Sync.",
+  "description": "Show directories you've hidden using Dropbox Selective Sync.",
   "main": "index.js",
   "bin": "bin.js",
   "scripts": {
