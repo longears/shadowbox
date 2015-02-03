@@ -43,4 +43,14 @@ if (!fs.existsSync(configPath)) {
 var secrets = JSON.parse(fs.readFileSync(configPath).toString());
 
 var dbClient = new dropbox.Client(secrets);
-shadowbox.ls(dbClient, opts.targetPath);
+shadowbox.ls(dbClient, opts.targetPath)
+    .catch(function(err) {
+        if (err.status == 404) {
+            console.log('Directory does not exist.');
+        } else if (err.status == 401) {
+            console.log('Authorization failed.  Check your token value in ~/.shadowbox');
+        } else {
+            console.log(err.message);
+        }
+        process.exit(1);
+    });

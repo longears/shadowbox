@@ -21,6 +21,7 @@ exports.ls = function(dbClient, targetPath, localDropboxRootPath) {
      *          e.g /Users/you/Dropbox/foo/bar
      *      localDropboxRootPath: path to your local Dropbox directory
      *          e.g /Users/you/Dropbox
+     * Returns a promise which resolves when the summary has been printed.
      */
 
     localDropboxRootPath = localDropboxRootPath || untildify('~/Dropbox');
@@ -28,29 +29,22 @@ exports.ls = function(dbClient, targetPath, localDropboxRootPath) {
     // get path relative to dropbox directory
     targetPath = path.resolve(targetPath);
     if (targetPath.indexOf(localDropboxRootPath) !== 0) {
-        console.log('The path must a be a directory in your Dropbox directory.');
-        return;
-    }
-    if (!fs.existsSync(targetPath)) {
-        console.log('Path does not exist.');
-        return;
+        return Promise.reject(new Error('Specify a directory in your Dropbox directory.'));
     }
     var targetPathRelToDropbox = targetPath.slice(localDropboxRootPath.length);
     if (targetPathRelToDropbox === '') { targetPathRelToDropbox = '/'; }
 
     Promise.promisifyAll(dbClient);
-    dbClient.authenticateAsync()
+    return dbClient.authenticateAsync()
         .then(function() {
             if (!dbClient.isAuthenticated()) {
-                throw new Error('Authentication failed');
+                throw new Error('Authentication failed.');
             }
             return dbClient.readdirAsync(targetPathRelToDropbox);
         }).spread(function(entryNames, dirStat, entryStats) {
             if (entryStats == undefined) {
-                console.log("That's a file, not a directory.");
-                return;
+                throw new Error('Specify a directory, not a file.');
             }
-
             if (entryStats.length == 0) {
                 console.log('That directory is empty.');
                 return;
